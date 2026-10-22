@@ -1,0 +1,131 @@
+__init__ means initializer
+self.name "attribute"
+name "parameter"
+
+=================================================
+Inherit "super().__init__()"
+
+
+```python
+
+class Student(Person):
+
+    def __init__(self, name, age, major):
+        super().__init__(name, age)
+        self.major = major
+
+```
+
+=================================================
+实例属性&类属性
+
+
+
+```python
+
+class Student:
+
+    school = "University"	#类属性，所有"Student"共享
+
+    def __init__(self, name):
+        self.name = name	#self.name=实例属性
+
+```
+
+=================================================
+Why is "self" so important?
+
+
+```python
+
+Class Person
+    
+    def introduce(self):
+        print(f"hello,I am f{self}")
+```
+
+person1=Person()
+student1.introduce()
+相当于
+Student.introduce(student1)	#student1 as the value of "self"
+
+=================================================
+with...as
+
+
+try:
+    f = open("hello.txt", "w")
+    f.write("Hello!")
+finally:
+    f.close()
+
+with即把这种模式封装起来
+with open("hello.txt", "w") as f:
+    f.write("Hello!")
+
+
+as f 的意思就是：
+把 with 管理的那个对象，起个名字叫 f
+
+
+```python
+
+class ManagedFile:
+    def __init__(self, name, mode):
+        self.name = name
+        self.mode = mode
+
+    def __enter__(self):
+        self.f = open(self.name, self.mode)
+        return self.f		#__enter__() 的返回值，会赋给 as 后面的变量
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.f.close()
+```
+
+=================================================
+Context Manager
+	
+只要一个对象提供了：
+
+__enter__()
+__exit__()
+
+它就可以作为：
+
+Context Manager（上下文管理器）
+
+使用：
+
+with xxx:
+    ...
+
+它不只可以管理文件,还可以管理：
+
+文件
+数据库连接
+网络连接
+锁
+线程资源
+临时资源
+事务
+
+例如：
+
+with lock:
+    # 操作共享数据
+
+意思就是：进入 → 获得锁	执行代码	    退出 → 释放锁
+
+=================================================
+
+Method Resolution Order(方法解析顺序)
+
+=================================================
+
+super().__init__()
+
+Python 的魔法方法（magic method，也叫 dunder method，因为前后各两个下划线 double underscore）
+而 __name__ 属于Python模块的内置属性(module special attributes/dunder attributes)__doc__ __file__
+
+self.__money 用于类的name mangling(名称修饰) 常用于封装
