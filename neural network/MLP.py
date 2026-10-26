@@ -74,9 +74,9 @@ def main() -> None:
         stratify=y,
     )
 
-    train_dataset = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train))
-    test_dataset = TensorDataset(torch.from_numpy(X_test), torch.from_numpy(y_test))
-    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    train_dataset = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train)) #torch.from_numpy 把numpy数组转为Tensor
+    test_dataset = TensorDataset(torch.from_numpy(X_test), torch.from_numpy(y_test))    #TensorDataset 把特征和标签配对
+    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)   #shuffle=True：每次遍历数据集时，打乱样本顺序
     test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False)
 
     # 2. 定义网络、损失函数与优化器。
