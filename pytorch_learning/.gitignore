@@ -11,4 +11,6 @@ __pycache__/
 
 # Virtual environment
 venv/
-.venv/
+.venv/*.pth
+*.pt
+*.ckpt
