@@ -80,7 +80,7 @@ def main() -> None:
     test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False)
 
     # 2. 定义网络、损失函数与优化器。
-    model = DigitMLP().to(device)
+    model = DigitMLP().to(device)   #.to() 是torch定义的方法 obj.to()
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)   #Adam优化器，lr(Learning Rate)
 
